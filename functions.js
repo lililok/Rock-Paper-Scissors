@@ -28,7 +28,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playGame() {
+/*function playGame() {
     let playerSelection = prompt();
     let computerSelection = getComputerChoice();
     return playRound(playerSelection, computerSelection);
@@ -37,7 +37,7 @@ function playGame() {
 let playerCount = 0;
 let computerCount = 0;
 
-for (let i = 0; i < 5; i++) {
+/*for (let i = 0; i < 5; i++) {
     let gameResult = playGame();
     console.log(gameResult);
     if (gameResult.includes("Lose")) {
@@ -47,12 +47,22 @@ for (let i = 0; i < 5; i++) {
     }
     console.log(computerCount + " | Computer Score")
     console.log(playerCount + " | Player Score")
-}
+}*/
 
-if (playerCount > computerCount) {
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        let playerSelection = button.id;
+        let computerSelection = getComputerChoice();
+        alert(playRound(playerSelection, computerSelection));
+    });
+});
+
+
+/*if (playerCount > computerCount) {
     console.log("The winner is Player!");
 } else if (computerCount > playerCount) {
     console.log("The winner is Computer");
 } else {
     console.log("A tie i guess?");
-}
+}*/
