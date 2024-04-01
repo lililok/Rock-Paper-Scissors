@@ -1,3 +1,8 @@
+const buttons = document.querySelectorAll("button");
+const results = document.querySelector("#results");
+let playerCount = 0;
+let computerCount = 0;
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     if (randomNumber === 0) {
@@ -28,8 +33,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let playerCount = 0;
-let computerCount = 0;
 
 /*for (let i = 0; i < 5; i++) {
     let gameResult = playGame();
@@ -43,17 +46,24 @@ let computerCount = 0;
     console.log(playerCount + " | Player Score")
 }*/
 
-const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         let playerSelection = button.id;
         let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        results.textContent = result;
+        if (result.includes("Lose")) {
+            computerCount++;
+        } else if (result.includes("Win")) {
+            playerCount++;
+        }
+        let runningScore = computerCount + " | Computer Score";
+        result += runningScore;
+        runningScore = playerCount + " | Player Score";
+        result += runningScore;
+        results.textContent = result;
     });
 });
-
-const results = document.querySelector("#results");
-
-results.textContent = playRound(playerSelection, computerSelection);
 
 /*if (playerCount > computerCount) {
     console.log("The winner is Player!");
