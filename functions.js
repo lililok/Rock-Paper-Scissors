@@ -28,12 +28,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-/*function playGame() {
-    let playerSelection = prompt();
-    let computerSelection = getComputerChoice();
-    return playRound(playerSelection, computerSelection);
-}
-
 let playerCount = 0;
 let computerCount = 0;
 
@@ -54,10 +48,12 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         let playerSelection = button.id;
         let computerSelection = getComputerChoice();
-        alert(playRound(playerSelection, computerSelection));
     });
 });
 
+const results = document.querySelector("#results");
+
+results.textContent = playRound(playerSelection, computerSelection);
 
 /*if (playerCount > computerCount) {
     console.log("The winner is Player!");
