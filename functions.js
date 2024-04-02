@@ -1,5 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector("#results");
+const score = document.querySelector("#score");
+score.textContent = "Running score";
 let playerCount = 0;
 let computerCount = 0;
 
@@ -33,19 +35,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-/*for (let i = 0; i < 5; i++) {
-    let gameResult = playGame();
-    console.log(gameResult);
-    if (gameResult.includes("Lose")) {
-        computerCount++;
-    } else if (gameResult.includes("Win")) {
-        playerCount++;
-    }
-    console.log(computerCount + " | Computer Score")
-    console.log(playerCount + " | Player Score")
-}*/
-
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         let playerSelection = button.id;
@@ -57,18 +46,22 @@ buttons.forEach(button => {
         } else if (result.includes("Win")) {
             playerCount++;
         }
-        let runningScore = computerCount + " | Computer Score";
-        result += runningScore;
-        runningScore = playerCount + " | Player Score";
-        result += runningScore;
-        results.textContent = result;
+        let scorePlayer = 'Player: ' + playerCount;
+        let scoreComputer = 'Computer: ' + computerCount;
+
+        score.innerHTML = scorePlayer + '<br>' + scoreComputer;
+        if (playerCount === 5 || computerCount === 5) {
+            if (playerCount > computerCount) {
+                score.innerHTML = "The winner is Player!";
+            } else if (computerCount > playerCount) {
+                score.innerHTML = "The winner is Computer!";
+            } else {
+                score.innerHTML = "A tie i guess?";
+            }
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+        }
     });
 });
-
-/*if (playerCount > computerCount) {
-    console.log("The winner is Player!");
-} else if (computerCount > playerCount) {
-    console.log("The winner is Computer");
-} else {
-    console.log("A tie i guess?");
-}*/
